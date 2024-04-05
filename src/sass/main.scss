@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&display=swap");
 
 /*
 --- 01 TYPOGRAPHY SYSTEM
@@ -37,7 +37,7 @@
 }
 
 // Variables
-$bp-small: 37.5em;
+$bp-medium: 62em;
 
 // Mixins for media queries
 @mixin respond($breakpoint) {
@@ -51,10 +51,319 @@ html {
 }
 
 body {
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-size: 1.8rem;
   font-weight: 500;
   box-sizing: border-box;
   background-image: url(../images/bg-main-desktop.png);
   background-repeat: no-repeat;
+
+  @include respond($bp-medium) {
+    background-image: url(../images/bg-main-mobile.png);
+    background-size: 100%;
+  }
+}
+
+.container {
+  max-width: 120rem;
+  margin: 8rem auto;
+  padding: 0 1.8rem;
+
+  display: flex;
+  align-items: center;
+  gap: 12rem;
+
+  @include respond($bp-medium) {
+    margin: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    align-items: center;
+    gap: 0;
+    padding: 5rem 2rem;
+  }
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex-basis: 45%;
+
+  @include respond($bp-medium) {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 0;
+    height: 20rem;
+  }
+}
+
+.card {
+  // CARD FRONT-SIDE
+  &--front {
+    position: relative;
+    color: var(--white);
+    font-weight: 400;
+    max-width: 44.7rem;
+    height: 24.5rem;
+    background-color: transparent;
+
+    @include respond($bp-medium) {
+      height: 15.615rem;
+      transform: translateY(-6.3rem);
+      z-index: 100;
+    }
+  }
+
+  &__front-visual {
+    display: block;
+    border-radius: 7.5px;
+
+    @include respond($bp-medium) {
+      width: 85%;
+      box-shadow: 1rem 2rem 4rem rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &__front-logo {
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
+
+    @include respond($bp-medium) {
+      height: 3.2rem;
+      top: 2rem;
+      left: 2rem;
+    }
+  }
+
+  &__front-number {
+    position: absolute;
+    bottom: 7.5rem;
+    left: 3rem;
+    font-size: 3.2rem;
+    letter-spacing: 1.2px;
+
+    @include respond($bp-medium) {
+      font-size: 2.1rem;
+      font-weight: 500;
+      top: 9rem;
+      left: 2rem;
+    }
+  }
+
+  &__front-user {
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    text-transform: uppercase;
+
+    @include respond($bp-medium) {
+      font-size: 1.3rem;
+      top: 13.5rem;
+      left: 2rem;
+    }
+  }
+
+  &__front-date {
+    position: absolute;
+    bottom: 3rem;
+    right: 3rem;
+
+    @include respond($bp-medium) {
+      font-size: 1.3rem;
+      top: 13.5rem;
+      right: 7rem;
+    }
+  }
+
+  // CARD BACK-SIDE
+  &--back {
+    position: relative;
+    color: var(--white);
+    font-weight: 500;
+    max-width: 44.7rem;
+    height: 24.5rem;
+    background-color: transparent;
+
+    margin-left: auto;
+
+    @include respond($bp-medium) {
+      height: 15.615rem;
+    }
+  }
+
+  &__back-visual {
+    display: block;
+
+    @include respond($bp-medium) {
+      width: 85%;
+      margin-left: auto;
+    }
+  }
+
+  &__back-cvc {
+    position: absolute;
+    top: 11rem;
+    right: 6rem;
+    letter-spacing: 1.2px;
+
+    @include respond($bp-medium) {
+      top: 7.2rem;
+      right: 3.5rem;
+      font-size: 1.2rem;
+      font-weight: 400;
+    }
+  }
+}
+
+// FORM
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 36rem;
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &__group--double {
+    flex-direction: row;
+    // align-items: center;
+    gap: 2rem;
+  }
+
+  &__exp {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    & > * {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+
+  &__cvc {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &__input--small {
+    max-width: 7rem;
+  }
+
+  &__input--medium {
+    max-width: 17rem;
+  }
+
+  label {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+  }
+
+  &__input {
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--light-grayish-violet);
+
+    font-family: inherit;
+    font-size: 1.6rem;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:focus {
+      border: 1px solid transparent;
+      outline: 1px solid var(--active-input-2);
+    }
+
+    &::placeholder {
+      color: hsl(257, 7%, 80%);
+    }
+  }
+}
+
+.btn {
+  padding: 1rem;
+  font-family: inherit;
+  font-size: 1.8rem;
+  font-weight: 500;
+  border-radius: 7px;
+  border: none;
+  background-color: var(--very-dark-violet);
+  color: var(--white);
+  cursor: pointer;
+  margin-top: 1.5rem;
+
+  @include respond($bp-medium) {
+    padding: 1.5rem 1rem;
+  }
+
+  &--continue {
+    width: 100%;
+
+    @include respond($bp-medium) {
+      padding: 1.5rem 1rem;
+    }
+  }
+}
+
+// SUCCESS
+.success {
+  // width: 30%;
+  width: 34rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+
+  &__icon {
+    width: 8rem;
+  }
+
+  &__title {
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  &__message {
+    color: var(--dark-grayish-violet);
+  }
+}
+
+.form__double-error-box {
+  position: relative;
+}
+
+.error-pos {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.error-pos-2 {
+  position: absolute;
+  top: 0;
+  right: -0.75rem;
+}
+
+// ERROR STATES
+.form__error {
+  font-size: 1.1rem;
+  color: var(--red-input-error);
+
+  display: none;
+}
+
+.error-active {
+  display: block;
+}
+
+.error-border {
+  border: 1px solid transparent;
+  outline: 1px solid var(--red-input-error);
 }
